@@ -20,7 +20,7 @@ async def on_ready():
   print(f'{client.user} has connected to Discord!')
 @client.event
 async def on_message(message):
-  if message.channel.id == 985752337710723163 and not message.content.startswith("$"):
+  if message.channel.id == 988062415906304050 and not message.content.startswith("$"):
     counting_team = fetch_role(message)
     if counting_team is None:
       return None
@@ -45,7 +45,8 @@ async def on_message(message):
     f = open('number.txt', 'w')
     f.writelines([str(current_count) + "\n", ",".join(correct_lst) + "\n", ",".join(error_lst)])
     f.close()
-      
+  
+  #command to check the score, may adjust it so only the dev and event team can check it
   if message.content.startswith("$score"):
     f = open('number.txt', 'r')
     f.readline()
