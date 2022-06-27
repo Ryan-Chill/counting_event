@@ -10,7 +10,8 @@ client = discord.Client()
 
 def fetch_role(m):
   author_roles = [r.id for r in m.author.roles]
-  for i, n in enumerate([985750157607985153, 987232675221868604]):
+  #put id in order of kusa, yaoyao, kuki
+  for i, n in enumerate([985750157607985153, 987232675221868604, 988065293819584562]):
     if n in author_roles:
       return i
   return None
@@ -20,7 +21,8 @@ async def on_ready():
   print(f'{client.user} has connected to Discord!')
 @client.event
 async def on_message(message):
-  if message.channel.id == 988062415906304050 and not message.content.startswith("$"):
+  #channel id has been adjusted to counting channel
+  if message.channel.id == 988062415906304050:
     counting_team = fetch_role(message)
     if counting_team is None:
       return None
@@ -54,7 +56,7 @@ async def on_message(message):
     error_lst = f.readline().split(",")
     f.close()
     output = "This command is used for debugging and testing, not to be actually implemented"
-    for i, name in enumerate(["Team Kusanali", "Team Yaoyao"]):
+    for i, name in enumerate(["Team Kusanali", "Team Yaoyao", "Team Kuki"]):
       output += f"\n{name}: has {correct_lst[i]} correct entries and {error_lst[i]} wrong entries"
     await message.channel.send(output)
 
