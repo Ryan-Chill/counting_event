@@ -37,8 +37,12 @@ async def on_message(message):
     correct_lst = f.readline()[:-1].split(",")
     error_lst = f.readline().split(",")
     f.close()
-        
-    if not wrong_counting and entry_count == current_count + 1:
+    
+    if current_count == 3000:
+      await message.author.send("The counting has reached 3000! Please wait for result!")
+      await message.delete()
+      return None
+    elif not wrong_counting and entry_count == current_count + 1:
       current_count += 1
       correct_lst[counting_team] = str(int(correct_lst[counting_team]) + 1)
     else:
